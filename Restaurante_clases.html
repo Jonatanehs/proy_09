@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+
+        class Restaurante {
+            #plato;
+            #cantidad;
+            #precio
+
+            constructor() {
+                this.#plato = '';
+                this.#cantidad = 0;
+                this.#precio = 0;
+            }
+
+            set setPlato(value) {
+                this.#plato = value;
+            }
+
+            get getPlato() {
+                return this.#plato
+            }
+
+            set setCantidad(value) {
+                this.#cantidad = value;
+            }
+
+            get getCantidad() {
+                return this.#cantidad
+            }
+
+            set setPrecio(value) {
+                this.#precio = value;
+            }
+
+            get getPrecio() {
+                return this.#precio
+            }
+
+            pedidoRestauante() {
+                console.log(`El cliente quiere un ${this.#plato} para ${this.#cantidad}` +
+                    ` a un precio de ${this.#precio} por unidad`)
+
+            }
+
+            descuentoPedido() {
+                let total = this.#cantidad * this.#precio
+                let descuento = total * 0.10;
+                let totalConDescuento = total - descuento;
+
+                if (total >= 50000 && this.#cantidad > 2) {
+
+                    console.log(`se le aplica el descuento del 10% y el total es  ` +
+                        `${totalConDescuento}`)
+
+                } else {
+
+                    console.log(`no se le aplica el descuento el total es` + ` ${total}`)
+
+                }
+            }
+        }
+
+        Reflect.preventExtensions(Restaurante);
+
+        const restaurante1 = new Restaurante();
+        const restaurante2 = new Restaurante();
+        const restaurante3 = new Restaurante();
+
+        Reflect.preventExtensions(restaurante1)
+        Reflect.preventExtensions(restaurante2)
+        Reflect.preventExtensions(restaurante3)
+
+        console.log({ restaurante1 })
+
+        restaurante1.setPlato = '';
+        restaurante1.setCantidad = 0;
+        restaurante1.setPrecio = 0;
+
+        restaurante2.setPlato = '';
+        restaurante2.setCantidad = 0;
+        restaurante2.setPrecio = 0;
+
+        restaurante3.setPlato = '';
+        restaurante3.setCantidad = 0;
+        restaurante3.setPrecio = 0;
+
+        restaurante1.pedidoRestauante();
+        restaurante1.descuentoPedido();
+
+        console.log({ restaurante2 })
+
+        restaurante2.pedidoRestauante();
+        restaurante2.descuentoPedido();
+
+        console.log({ restaurante3 })
+
+        restaurante3.pedidoRestauante();
+        restaurante3.descuentoPedido();
+
+        class RestauranteDomicilio extends Restaurante {
+            #tiempoEntrega
+            #valorDomicilio
+
+            constructor() {
+                super()
+                this.#tiempoEntrega = '';
+                this.#valorDomicilio = 0;
+            }
+
+            set setTiempoEntrega(value) {
+                this.#tiempoEntrega = value;
+            }
+
+            get getTiempoEntrega() {
+                return this.#tiempoEntrega
+            }
+
+            set setValorDomicilio(value) {
+                this.#valorDomicilio = value;
+            }
+
+            get getValorDomicilio() {
+                return this.#valorDomicilio
+            }
+
+            informacionRestaurante() {
+                console.log(`El restaurante amigos unidos vende ${this.getPlato}` +
+                    ` a un precio de ${this.getPrecio} ` + `con un tiempo de entrega ` +
+                    `${this.getTiempoEntrega} ` + `con un excelente precio de domicilio` +
+                    ` ${this.getValorDomicilio}`)
+            }
+
+            valorpedido = function () {
+                let total = this.getCantidad * this.getPrecio
+                let descuento = total * 0.10;
+                let totalConDescuento = total - descuento + this.getValorDomicilio;
+
+                if (total >= 50000 && this.getCantidad > 2) {
+
+                    console.log(`se le aplica el descuento del 10% con valor de domicilio` +
+                        ` ${this.getValorDomicilio} y el total es ${totalConDescuento}`)
+
+
+                } else {
+
+                    console.log(`no se le aplica el descuento el total es` + ` ${total}`)
+
+                }
+            }
+
+        }
+
+        Reflect.preventExtensions(RestauranteDomicilio)
+
+        const plato4 = new RestauranteDomicilio
+
+        Reflect.preventExtensions(plato4)
+
+
+        plato4.setPlato = 'arroz con leche';
+        plato4.setCantidad = 10;
+        plato4.setPrecio = 5500;
+        plato4.setTiempoEntrega = '15 min';
+        plato4.setValorDomicilio = 4500;
+
+        console.log({plato4})
+
+        plato4.informacionRestaurante();
+        plato4.valorpedido();
+
+
+
+    </script>
+</body>
+
+</html>

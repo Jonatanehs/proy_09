@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <script>
+
+        console.clear();
+
+        class Automovil {
+
+            #marca;
+            #linea;
+            #modelo;
+            #cilindraje;
+            #precio;
+
+            constructor() {
+
+                this.#marca = '';
+                this.#linea = '';
+                this.#modelo = 0;
+                this.#cilindraje = 0;
+                this.#precio = 0;
+            }
+
+            set setMarca(value) {
+                this.#marca = value;
+            }
+
+            get getMarca() {
+                return this.#marca;
+            }
+
+            set setLinea(value) {
+                this.#linea = value;
+            }
+
+            get getLinea() {
+                return this.#linea;
+            }
+
+            set setModelo(value) {
+                this.#modelo = value;
+            }
+
+            get getModelo() {
+                return this.#modelo;
+            }
+
+            set setCilindraje(value) {
+                this.#cilindraje = value;
+            }
+
+            get getCilindraje() {
+                return this.#cilindraje;
+            }
+
+            set setPrecio(value) {
+                this.#precio = value;
+            }
+
+            get getPrecio() {
+                return this.#precio;
+            }
+
+            informacionVehiculo() {
+                console.log(`el vehiculo de marca ${this.getMarca}` + ` de la linea ${this.#linea}\n` +
+                    `es un modelo ${this.getModelo}` + ` que contiene un motor con cilindraje de ${this.#cilindraje}\n` +
+                    `tiene como precio de ${this.getrecio}`)
+            }
+
+            revisionTecnicoMecanica() {
+                let anionew = new Date().getFullYear();
+                let antigueda = anionew - this.#modelo
+                if (antigueda > 5) {
+                    console.log(`este modelo tiene ${antigueda} año necesita tecnomecanica`)
+                } else {
+                    console.log(`este modelo tiene ${antigueda} años no necesita tecnomecanica`)
+                }
+            }
+
+            nivelGasolina() {
+                let gasolina = Math.random() * 100
+                if (gasolina > 1 && gasolina <= 100) {
+                    let nivelGasolina = Math.floor(gasolina);
+                    console.log(`el carro tiene un ${nivelGasolina}` + ` % de gasolina`)
+                }
+
+            }
+
+        }
+
+        Reflect.preventExtensions(Automovil);
+
+        const auto1 = new Automovil();
+        const auto2 = new Automovil();
+        const auto3 = new Automovil();
+
+        Reflect.preventExtensions(auto1);
+        Reflect.preventExtensions(auto2);
+        Reflect.preventExtensions(auto3);
+
+        console.log({ auto1 });
+
+        auto1.setMarca = 'Chevrolet'
+        auto1.setLinea = 'camaro'
+        auto1.setModelo = 2024
+        auto1.setCilindraje = 6
+        auto1.setPrecio = 257_000_000
+
+        auto1.informacionVehiculo();
+        auto1.revisionTecnicoMecanica();
+        auto1.nivelGasolina();
+
+        console.log('')
+        console.log({ auto2 });
+
+        auto2.setMarca = 'Mercedes'
+        auto2.setLinea = 'Benz c'
+        auto2.setModelo = 2017
+        auto2.setCilindraje = 4
+        auto2.setPrecio = 97_800_000
+
+        auto2.informacionVehiculo();
+        auto2.revisionTecnicoMecanica();
+        auto2.nivelGasolina();
+
+        console.log('');
+        console.log({ auto3 });
+
+        auto3.setMarca = 'BMW'
+        auto3.setLinea = 'M5'
+        auto3.setModelo = 2019
+        auto3.setCilindraje = 4
+        auto3.setPrecio = 250_000_000
+
+        auto3.informacionVehiculo();
+        auto3.revisionTecnicoMecanica();
+        auto3.nivelGasolina();
+
+        class Sedan extends Automovil {
+            #numeroPasajeros;
+            #tipoCaja;
+            #numeroCinturonesSeguridad;
+
+            constructor() {
+                super()
+                this.#numeroPasajeros = 0;
+                this.#tipoCaja = '';
+                this.#numeroCinturonesSeguridad = 0;
+
+            }
+            set setNumeroPasajeros(value) {
+                this.#numeroPasajeros = value;
+            }
+
+            get getNumeroPasajeros() {
+                return this.#numeroPasajeros;
+            }
+
+            set setTipoCaja(value) {
+                this.#tipoCaja = value;
+            }
+
+            get getTipoCaja() {
+                return this.#tipoCaja;
+            }
+
+            set setNumeroCinturonesSeguridad(value) {
+                this.#numeroCinturonesSeguridad = value;
+            }
+
+            get getNumeroCinturonesSeguridad() {
+                return this.#numeroCinturonesSeguridad;
+            }
+
+            informacionVehiculo() {
+                console.log(`el vehiculo de marca ${this.getMarca}` + ` de la linea ${this.getLinea}\n` +
+                    `es un modelo ${this.getModelo}` + ` que contiene un motor con cilindraje de ${this.getCilindraje}\n` +
+                    `tiene como precio de ${this.getPrecio}\n` + `contiene ${this.getNumeroPasajeros} de pasajeros` +
+                    ` y una caja de cambios ${this.getTipoCaja}\n`)
+            }
+
+            numeroCinturonesSeguridad1 = function () {
+
+                console.log(`Este carro tiene ${this.getNumeroCinturonesSeguridad} cinturones`)
+            }
+        }
+
+
+        Reflect.preventExtensions(Sedan);
+
+        const auto4 = new Sedan;
+
+        Reflect.preventExtensions(auto4)
+
+        auto4.setMarca = 'Renault';
+        auto4.setLinea = 'twingo'
+        auto4.setModelo = 2008;
+        auto4.setCilindraje = 4;
+        auto4.setPrecio = 175000000;
+        auto4.setNumeroPasajeros = 4;
+        auto4.setTipoCaja = 'manual'
+        auto4.setNumeroCinturonesSeguridad = 4;
+
+        console.log('');
+        console.log({ auto4 })
+
+        auto4.informacionVehiculo();
+        auto4.numeroCinturonesSeguridad1();
+
+    </script>
+</body>
+
+</html>
