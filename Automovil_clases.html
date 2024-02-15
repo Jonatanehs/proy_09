@@ -10,20 +10,26 @@
 <body>
 
 
+    <!-- esta etiqueta permite el uso de JavaScript -->
     <script>
 
+        // se limpia la consola 
         console.clear();
 
+        // esta es la forma actual en la que se utiliza las clases con la palabra reservada class 
         class Automovil {
 
+            // se encapsulan las propiedades actuando como caja negra
             #marca;
             #linea;
             #modelo;
             #cilindraje;
             #precio;
 
+            // el constructor permite la inicializacion de las propiedades de la clase 
             constructor() {
 
+                // las propiedades van a adquirir valores vacios que junto al this permitiran la modificacion de estos 
                 this.#marca = '';
                 this.#linea = '';
                 this.#modelo = 0;
@@ -31,66 +37,118 @@
                 this.#precio = 0;
             }
 
+            // este metodo permite asignar o modificar el valor            
             set setMarca(value) {
+
+                // la propiedad que se le puede modificar el valor es this.#marca 
                 this.#marca = value;
             }
 
+            // el metodo get permite devolver el valor de la propiedad 
             get getMarca() {
+
+                // retornara el valor que obtenga this.#marca 
                 return this.#marca;
             }
 
+            // este metodo permite asignar o modificar el valor
             set setLinea(value) {
+
+                // la propiedad que se le puede modificar el valor es this.#linea  
                 this.#linea = value;
             }
 
+            // el metodo get permite devolver el valor de la propiedad 
             get getLinea() {
+
+                // retornara el valor que obtenga this.#linea
                 return this.#linea;
             }
 
+
+            // este metodo permite asignar o modificar el valor 
             set setModelo(value) {
+
+                // la propiedad que se le puede modificar el valor es this.#modelo 
                 this.#modelo = value;
             }
 
+            // el metodo get permite devolver el valor de la propiedad 
             get getModelo() {
+
+                // retornara el valor que obtenga this.#modelo
                 return this.#modelo;
             }
 
+            // este metodo permite asignar o modificar el valor 
             set setCilindraje(value) {
+
+                // la propiedad que se le puede modificar el valor es this.#cilindraje
                 this.#cilindraje = value;
             }
 
+            // el metodo get permite devolver el valor de la propiedad 
             get getCilindraje() {
+
+                // retornara el valor que obtenga this.#cilindraje
                 return this.#cilindraje;
             }
 
+            // este metodo permite asignar o modificar el valor 
             set setPrecio(value) {
+
+                // la propiedad que se le puede modificar el valor es this.#precio
                 this.#precio = value;
             }
 
+            // el metodo get permite devolver el valor de la propiedad 
             get getPrecio() {
+
+                // retornara el valor que obtenga this.#precio
                 return this.#precio;
             }
 
+            // se asigna un nuevo metodo a la clase 
             informacionVehiculo() {
+
+                // se imprime un mensaje en consola llamado a los metodos get de la clase 
                 console.log(`el vehiculo de marca ${this.getMarca}` + ` de la linea ${this.#linea}\n` +
                     `es un modelo ${this.getModelo}` + ` que contiene un motor con cilindraje de ${this.#cilindraje}\n` +
-                    `tiene como precio de ${this.getrecio}`)
+                    `tiene como precio de ${this.getPrecio}`)
             }
 
+            // se asigna un nuevo metodo a la clase 
             revisionTecnicoMecanica() {
+
+                // se crea una variable que contiene una nueva fecha con el año actual
                 let anionew = new Date().getFullYear();
+
+                // La variable antigueda contiene anionew menos lo que esta en this.modelo 
                 let antigueda = anionew - this.#modelo
+
+                // si antigueda es mayor a 5 ejecuta y se imprime un mensaje en consola 
                 if (antigueda > 5) {
                     console.log(`este modelo tiene ${antigueda} año necesita tecnomecanica`)
+
+                    // si es falso ejecutara e imprimira un mensaje en consola 
                 } else {
                     console.log(`este modelo tiene ${antigueda} años no necesita tecnomecanica`)
                 }
             }
 
+            // se crea un nuevo metodo de la clase 
             nivelGasolina() {
+
+                // se crea una variable llamada gasolina que contendra numeros del 0 hasta el 100
                 let gasolina = Math.random() * 100
+
+                // si gasolina es mayor que 1 y menor igual a 100 ejecuta 
                 if (gasolina > 1 && gasolina <= 100) {
+
+                    // se crea una nueva variable llamada nivelGasolina que contendra un numero entero de gasolina
                     let nivelGasolina = Math.floor(gasolina);
+
+                    // se imprime un mensaje en la consola 
                     console.log(`el carro tiene un ${nivelGasolina}` + ` % de gasolina`)
                 }
 
@@ -98,110 +156,163 @@
 
         }
 
+        /* esto evita que se pueda agregar nuevas propiedades a Automovil 
+       sin afectar los valores que tengan asignados */
         Reflect.preventExtensions(Automovil);
 
+        // la constante auto contiene una nueva estancia de la clase Automovil
         const auto1 = new Automovil();
         const auto2 = new Automovil();
         const auto3 = new Automovil();
 
+        // Reflect actua como caja negra y evita agregar nuevas propiedades 
         Reflect.preventExtensions(auto1);
         Reflect.preventExtensions(auto2);
         Reflect.preventExtensions(auto3);
 
+        // imprime en la consola todo lo que contenga auto1 
         console.log({ auto1 });
 
+        // se le asignan valores tipo string y number a las propiedades llamandolas con el metodo set 
         auto1.setMarca = 'Chevrolet'
         auto1.setLinea = 'camaro'
         auto1.setModelo = 2024
         auto1.setCilindraje = 6
         auto1.setPrecio = 257_000_000
 
+        // se inicializan los metodos de la clase con los valores que contiene auto1 
         auto1.informacionVehiculo();
         auto1.revisionTecnicoMecanica();
         auto1.nivelGasolina();
 
+        // se imprime un string vacio en consola 
         console.log('')
+
+        // se imprime en la consola todo lo que contemga auto2 
         console.log({ auto2 });
 
+        // se le asigna nuevos valores a las propiedades de auto2 
         auto2.setMarca = 'Mercedes'
         auto2.setLinea = 'Benz c'
         auto2.setModelo = 2017
         auto2.setCilindraje = 4
         auto2.setPrecio = 97_800_000
 
+        // se ejecutan los metodos de la clase con los valores de auto2 
         auto2.informacionVehiculo();
         auto2.revisionTecnicoMecanica();
         auto2.nivelGasolina();
 
+        // se imprime en consola un string vacio 
         console.log('');
+
+        // se imprime en consola todo lo que contenga auto3 
         console.log({ auto3 });
 
+        // se le asignan valores a las propiedades que se guardaran en auto3.set 
         auto3.setMarca = 'BMW'
         auto3.setLinea = 'M5'
         auto3.setModelo = 2019
         auto3.setCilindraje = 4
         auto3.setPrecio = 250_000_000
 
+        // se ejecutan los metodos de la clase con los valores que esten en auto3
         auto3.informacionVehiculo();
         auto3.revisionTecnicoMecanica();
         auto3.nivelGasolina();
 
+        /* se hace una herencia de clases donde la clase Sedan heredara los atributos
+        de la super clase Automovil  */
         class Sedan extends Automovil {
+
+            // se asignan nuevas propiedades que estan encapsuladas 
             #numeroPasajeros;
             #tipoCaja;
             #numeroCinturonesSeguridad;
 
+            // se utiliza el metodo constructor para inicializar los atributos de la clase 
             constructor() {
+
+                // se llama a los atributos de la clase Automovil 
                 super()
+
+                // se le asignan valores vacios a las propiedades de la clase 
                 this.#numeroPasajeros = 0;
                 this.#tipoCaja = '';
                 this.#numeroCinturonesSeguridad = 0;
 
             }
+
+            // se usa el metodo set para asignar o modificar los valores de la propiedad
             set setNumeroPasajeros(value) {
+
+                // la propiedad que se le va  a asignar valor es #numeroPasajeros
                 this.#numeroPasajeros = value;
             }
 
+            // el metodo get permitira retornar los valores 
             get getNumeroPasajeros() {
+
+                // retorna los valores que esten en this.#numeroPasajeros
                 return this.#numeroPasajeros;
             }
 
+            // se usa el metodo set para asignar o modificar los valores de la propiedad
             set setTipoCaja(value) {
+
+                // la propiedad que se le va  a asignar valor es #tipoCaja
                 this.#tipoCaja = value;
             }
 
+            // el metodo get permitira retornar los valores 
             get getTipoCaja() {
+
+                // retorna los valores que esten en this.#tipoCaja
                 return this.#tipoCaja;
             }
 
+            // se usa el metodo set para asignar o modificar los valores de la propiedad
             set setNumeroCinturonesSeguridad(value) {
+
+                // la propiedad que se le va  a asignar valor es #numeroCinturonesSeguridad
                 this.#numeroCinturonesSeguridad = value;
             }
 
+            // el metodo get permitira retornar los valores 
             get getNumeroCinturonesSeguridad() {
+
+                // retorna los valores que esten en this.#numeroCinturonesSeguridad
                 return this.#numeroCinturonesSeguridad;
             }
 
+            // se crea un nuevo metodo de la clase 
             informacionVehiculo() {
+
+                // se imprime un mensaje en consola que llamara los metodos get de la clase 
                 console.log(`el vehiculo de marca ${this.getMarca}` + ` de la linea ${this.getLinea}\n` +
                     `es un modelo ${this.getModelo}` + ` que contiene un motor con cilindraje de ${this.getCilindraje}\n` +
                     `tiene como precio de ${this.getPrecio}\n` + `contiene ${this.getNumeroPasajeros} de pasajeros` +
                     ` y una caja de cambios ${this.getTipoCaja}\n`)
             }
 
+            // se crea un nuevo metodo de la clase 
             numeroCinturonesSeguridad1 = function () {
 
+                // se imprime un mensaje en cosola 
                 console.log(`Este carro tiene ${this.getNumeroCinturonesSeguridad} cinturones`)
             }
         }
 
-
+        // actua como caja negra para ocultar valores de la clase 
         Reflect.preventExtensions(Sedan);
 
+        // se hace una nueva instancia de clase que se guardara en auto 4 
         const auto4 = new Sedan;
 
+        // se ocultara y no añadira nuevas propiedades a auto4 
         Reflect.preventExtensions(auto4)
 
+        // se le asignan valores que se guardaran en set 
         auto4.setMarca = 'Renault';
         auto4.setLinea = 'twingo'
         auto4.setModelo = 2008;
@@ -211,12 +322,17 @@
         auto4.setTipoCaja = 'manual'
         auto4.setNumeroCinturonesSeguridad = 4;
 
+        // se imprime un string vacio en consola 
         console.log('');
+
+        // se imprime en la consola todo lo que este en auto4 
         console.log({ auto4 })
 
+        // se inicializa los metodos con las propiedades que estan en auto4 
         auto4.informacionVehiculo();
         auto4.numeroCinturonesSeguridad1();
 
+        // se cierra la etiqueta js 
     </script>
 </body>
 

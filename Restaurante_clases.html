@@ -9,32 +9,51 @@
 
 <body>
 
+<!-- esta etiqueta permite el uso e implementar el uso de JavaScript  -->
     <script>
 
+// se crea una clase llamada Restaurante 
         class Restaurante {
+
+// se encapsulan que actuaran como caja negra            
             #plato;
             #cantidad;
             #precio
 
+// esto permitira inicializar las propiedades de la clase 
             constructor() {
+
+// se le dan valores vacios a los atributos de la clase 
                 this.#plato = '';
                 this.#cantidad = 0;
                 this.#precio = 0;
             }
 
+// se usa el metodo set que permitira asignar o modificar el valor 
             set setPlato(value) {
+
+// lo que esta en value se guardara en this.#plato 
                 this.#plato = value;
             }
 
+// el metodo get devolvera el valor de un atributo 
             get getPlato() {
+
+// se retorna todo lo que este en #plato 
                 return this.#plato
             }
 
+// el metodo set permitira añadir valor o modificarlo 
             set setCantidad(value) {
+
+// lo que este en value se guardara en this.#cantidad 
                 this.#cantidad = value;
             }
 
+// el metodo get permite devolver el valor de la propiedad 
             get getCantidad() {
+
+// retorna todo lo que este en this.#cantidad
                 return this.#cantidad
             }
 
